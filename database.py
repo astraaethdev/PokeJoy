@@ -16,6 +16,9 @@ class Database:
 
     async def init(self):
         """Inicializa o banco de dados com todas as tabelas"""
+        # Garantir que o diretório do banco existe
+        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
+
         async with aiosqlite.connect(self.db_path) as db:
             # Tabela de treinadores
             await db.execute("""
