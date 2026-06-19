@@ -89,6 +89,7 @@ async def start_command(interaction: discord.Interaction):
     starter_pokemon = await pokeapi.get_pokemon_data(random.choice([1, 4, 7]))
     if starter_pokemon:
         starter_pokemon["level"] = 5
+        starter_pokemon["xp"] = 0
         starter_pokemon["max_hp"] = starter_pokemon["hp"] + 10
         starter_pokemon["hp"] = starter_pokemon["max_hp"]
         starter_pokemon["attack"] = starter_pokemon["attack"] + 5
@@ -317,6 +318,7 @@ async def catch_command(interaction: discord.Interaction):
 
     level = random.randint(1, max(5, trainer["level"] + 5))
     wild_pokemon["level"] = level
+    wild_pokemon["xp"] = 0
     wild_pokemon["max_hp"] = wild_pokemon["hp"] + (level * 2)
     wild_pokemon["hp"] = wild_pokemon["max_hp"]
     wild_pokemon["attack"] = wild_pokemon["attack"] + level
@@ -1215,8 +1217,8 @@ Boa jornada, treinador! ⚔
 
 
 @bot.tree.command(name="pvp", description="Desafia outro jogador para uma batalha PvP")
-@app_commands.describe(opponent="Jogador para desafiar")
-async def pvp_command(interaction: discord.Interaction, opponent: discord.Member):
+@app_commands.describe(opponent_id="ID do jogador para desafiar")
+async def pvp_command(interaction: discord.Interaction, opponent_id: str):
     if opponent.id == interaction.user.id:
         await interaction.response.send_message("✖ Você não pode desafiar a si mesmo!", ephemeral=True)
         return
@@ -1456,8 +1458,8 @@ class PvPBattleView(ui.View):
 
 
 @bot.tree.command(name="gift", description="Presenteia outro jogador com moedas")
-@app_commands.describe(user="Jogador para presentear", amount="Quantidade de moedas")
-async def gift_command(interaction: discord.Interaction, user: discord.Member, amount: int):
+@app_commands.describe(user_id="ID do jogador para presentear", amount="Quantidade de moedas")
+async def gift_command(interaction: discord.Interaction, user_id: str, amount: int):
     if amount <= 0:
         await interaction.response.send_message("✖ Quantidade inválida!", ephemeral=True)
         return
@@ -1484,8 +1486,8 @@ async def gift_command(interaction: discord.Interaction, user: discord.Member, a
 
 
 @bot.tree.command(name="trade", description="Inicia uma troca de Pokémon com outro jogador")
-@app_commands.describe(user="Jogador para trocar")
-async def trade_command(interaction: discord.Interaction, user: discord.Member):
+@app_commands.describe(user_id="ID do jogador para trocar")
+async def trade_command(interaction: discord.Interaction, user_id: str):
     if user.id == interaction.user.id:
         await interaction.response.send_message("✖ Não pode trocar com si mesmo!", ephemeral=True)
         return

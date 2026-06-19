@@ -216,11 +216,11 @@ UPGRADE_CARDS = {
 
 # Missões diárias
 DAILY_QUESTS = [
-    {"name": "Caçador Iniciante", "description": "Capture 3 Pokémon", "requirement": {"catches": 3}, "reward": {"coins": 300, "xp": 100}},
-    {"name": "Treinador Dedicado", "description": "Vença 2 batalhas", "requirement": {"wins": 2}, "reward": {"coins": 500, "xp": 150}},
-    {"name": "Explorador", "description": "Envie 20 mensagens no servidor", "requirement": {"messages": 20}, "reward": {"coins": 200, "xp": 80}},
-    {"name": "Colecionador", "description": "Adicione 1 Pokémon ao time", "requirement": {"team_add": 1}, "reward": {"coins": 400, "xp": 120}},
-    {"name": "Comerciante", "description": "Compre 1 item na loja", "requirement": {"shop_buy": 1}, "reward": {"coins": 250, "xp": 60}},
+    {"name": "Caçador Iniciante", "type": "daily", "description": "Capture 3 Pokémon", "requirement": {"catches": 3}, "reward": {"coins": 300, "xp": 100}},
+    {"name": "Treinador Dedicado", "type": "daily", "description": "Vença 2 batalhas", "requirement": {"wins": 2}, "reward": {"coins": 500, "xp": 150}},
+    {"name": "Explorador", "type": "daily", "description": "Envie 20 mensagens no servidor", "requirement": {"messages": 20}, "reward": {"coins": 200, "xp": 80}},
+    {"name": "Colecionador", "type": "daily", "description": "Adicione 1 Pokémon ao time", "requirement": {"team_add": 1}, "reward": {"coins": 400, "xp": 120}},
+    {"name": "Comerciante", "type": "daily", "description": "Compre 1 item na loja", "requirement": {"shop_buy": 1}, "reward": {"coins": 250, "xp": 60}},
 ]
 
 # Ranks de treinador
