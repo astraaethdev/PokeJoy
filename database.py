@@ -166,7 +166,7 @@ class Database:
 
     async def add_pokemon(self, user_id, pokemon_data):
         async with aiosqlite.connect(self.db_path) as db:
-            await db.execute("""
+            cursor = await db.execute("""
                 INSERT INTO pokemons (
                     user_id, pokedex_number, name, nickname, types, rarity, level, xp,
                     hp, max_hp, attack, defense, speed, moves, nature, potential,
@@ -185,7 +185,7 @@ class Database:
                 datetime.now().isoformat()
             ))
             await db.commit()
-            return db.last_insert_rowid()
+            return cursor.lastrowid
 
     async def get_pokemons(self, user_id, in_team_only=False):
         async with aiosqlite.connect(self.db_path) as db:
